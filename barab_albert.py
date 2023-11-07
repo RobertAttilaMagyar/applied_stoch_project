@@ -6,7 +6,6 @@ class BAGraph:
         self._m = m
         self._graph = nx.DiGraph()
         self._graph.add_nodes_from(range(m))
-    
     @property
     def graph(self):
         return self._graph
@@ -18,6 +17,10 @@ class BAGraph:
     @property
     def nodes(self):
         return self._graph.nodes
+    
+    @property
+    def timearrivals(self):
+        [0]*self.m + list(range(1, len(self.nodes) - self.m + 1))
     
     @m.setter
     def m(self, m):
@@ -36,6 +39,7 @@ class BAGraph:
         self.graph.add_node(len(self._graph.nodes))
         for node in chosen_nodes:
             self.graph.add_edge(node, list(self.graph.nodes)[-1])
+
             
     def buildGraph(self, n):
         for _ in range(n):
